@@ -1,11 +1,21 @@
+######################載入套件######################
 import math
 import random
 import pygame
 
 
+######################物件類別######################
 class Tornado:
-    """龍捲風類別：碰到球時重新開始遊戲"""
+    """
+    龍捲風類別：碰到球時重新開始遊戲\n
+    具有螺旋形視覺效果和碰撞檢測功能
+    """
     def __init__(self, x, y, width=30, height=80):
+        """
+        初始化龍捲風\n
+        x, y: 龍捲風的左上角座標\n
+        width, height: 龍捲風的寬度和高度\n
+        """
         self.x = x
         self.y = y
         self.width = width
@@ -16,14 +26,20 @@ class Tornado:
         self.color = (150, 150, 150)  # 灰色
         
     def update(self, dt):
-        """更新龍捲風位置和旋轉"""
+        """
+        更新龍捲風位置和旋轉\n
+        dt: 時間增量
+        """
         self.y += self.speed
         self.rotation += self.rotation_speed
         if self.rotation >= 360:
             self.rotation = 0
     
     def draw(self, screen):
-        """繪製龍捲風"""
+        """
+        繪製龍捲風\n
+        screen: pygame 螢幕物件
+        """
         # 畫龍捲風的螺旋形狀
         center_x = self.x + self.width // 2
         
@@ -46,7 +62,11 @@ class Tornado:
                               (int(layer_x), int(layer_y), int(layer_width), 6))
     
     def check_collision(self, ball):
-        """檢查是否與球碰撞"""
+        """
+        檢查是否與球碰撞\n
+        ball: 球物件\n
+        返回值：True 表示發生碰撞，False 表示無碰撞
+        """
         # 簡單的矩形碰撞檢測
         ball_left = ball.x - ball.radius
         ball_right = ball.x + ball.radius
@@ -62,5 +82,9 @@ class Tornado:
                 ball_bottom > tornado_top and ball_top < tornado_bottom)
     
     def is_off_screen(self, height):
-        """檢查龍捲風是否離開螢幕"""
+        """
+        檢查龍捲風是否離開螢幕\n
+        height: 螢幕高度\n
+        返回值：True 表示已離開螢幕，False 表示仍在螢幕內
+        """
         return self.y > height
