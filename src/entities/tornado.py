@@ -1,10 +1,8 @@
-
-######################載入套件######################
-import pygame 
-import sys
 import math
 import random
-######################類別物件######################
+import pygame
+
+
 class Tornado:
     """龍捲風類別：碰到球時重新開始遊戲"""
     def __init__(self, x, y, width=30, height=80):
@@ -66,19 +64,3 @@ class Tornado:
     def is_off_screen(self, height):
         """檢查龍捲風是否離開螢幕"""
         return self.y > height
-
-
-class Balloon:
-    def main():
-        try:
-            # 將 GameEngine 在執行時動態匯入，可避免某些靜態分析/執行環境的匯入問題
-            from src.game.game_engine import GameEngine
-        except Exception as e:
-            raise RuntimeError("無法匯入 GameEngine，請確認專案根目錄已在 PYTHONPATH，或使用 `python main.py` 從專案根目錄執行。") from e
-
-        engine = GameEngine()
-        engine.run()
-
-
-    if __name__ == '__main__':
-        main()

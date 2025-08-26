@@ -7,3 +7,21 @@ __pycache__/
 .env
 venv/
 ENV/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Python virtual env
+env/
+venv/
+
+# Assets (keep under source control if you want, change as needed)
+assets/
